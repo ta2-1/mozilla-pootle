@@ -8,7 +8,9 @@
 
 from collections import OrderedDict
 
-from pootle.core.delegate import format_registration
+from translate.storage.pypo import pofile
+
+from pootle.core.delegate import format_registration, format_classes
 from pootle.core.plugin import provider
 
 from .formats import MOZILLA_FORMATS
@@ -17,3 +19,8 @@ from .formats import MOZILLA_FORMATS
 @provider(format_registration)
 def register_formats(**kwargs_):
     return OrderedDict(MOZILLA_FORMATS)
+
+
+@provider(format_classes)
+def register_format_classes(**kwargs_):
+    return dict(ftl=pofile)
